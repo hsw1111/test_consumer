@@ -1,0 +1,46 @@
+.clearfix {
+  content:"";
+  display:block;
+  clear:both;
+}
+.user_detail {
+  width:1000px;
+  margin:0 auto;
+  background:#fff;
+}
+.user_detail h2 {
+  background: #aaa;
+  padding: 5px 20px;
+  color: #fff;
+}
+.user_detail .content {
+  padding:10px 30px;
+}
+
+.user_detail .content div.center{
+  border-bottom:2px solid #555;
+}
+.user_detail .content p {
+  margin-bottom:10px;
+}
+.user_detail .content span {
+  float:left;
+  width:50%;
+}
+.user_detail .content th span{
+  width:100%;
+}
+.user_detail .content h3 {
+  font-size: 16px;
+  margin-top: 10px;
+  color:#000;
+}
+.user_detail .ant-tabs-nav .ant-tabs-tab {
+  padding:12px 0;
+}
+.user_detail .ant-tabs-bar{
+  border-bottom:none;
+}
+.user_detail .ant-table-thead > tr > th, .user_detail .ant-table-tbody > tr > td{
+  padding:5px;
+}

@@ -1,0 +1,42 @@
+body{
+  background:#f1f1f1;
+}
+/* 头部样式 */
+.header .right_head {
+  float: right;
+  margin-top:-75px;
+  cursor:pointer;
+  width:200px;
+  height:14px;
+  position: relative;
+}
+.header .right_head span{
+  float:right;
+  margin-left:15px;
+  color:#fff;
+}
+.editPassword{
+  cursor:pointer;
+}
+
+/* 整体布局 */
+.ant-layout-content{
+  padding: 0 !important;
+  margin:0 10px;
+  
+}
+.ant-layout-sider{
+  height:1105px !important;
+  overflow-y: scroll;
+}
+.ant-layout.ant-layout-has-sider{
+  padding:24px 24px 0 0 !important;
+  background:#f1f1f1!important;
+}
+.header {
+  background:#4d4d4d
+}
+/* 修改密码模态框 */
+.ant-modal-header{
+  background:#d4d4d4
+}
