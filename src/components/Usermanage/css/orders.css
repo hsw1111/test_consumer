@@ -1,0 +1,40 @@
+.clearfix {
+  content:"";
+  display:block;
+  clear:both;
+}
+.user_order {
+  width:1000px;
+  margin:0 auto;
+  background:#fff;
+}
+.user_order h2 {
+  background: #aaa;
+  padding: 5px 20px;
+  color: #fff;
+}
+.user_order .content {
+  padding:10px 30px;
+}
+
+.user_order .content div.center{
+  border-bottom:2px solid #555;
+}
+.user_order .content p {
+  margin-bottom:10px;
+}
+.user_order .content span {
+  float:left;
+  width:50%;
+}
+.user_order .content h3 {
+  font-size: 16px;
+  margin-top: 10px;
+  color:#000;
+}
+.user_order .ant-table-thead > tr > th, .user_order .ant-table-tbody > tr > td{
+  padding:5px;
+}
+.user_order .content th span{
+  width:100%;
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Select,InputNumber,DatePicker,Input,Button,Table,Popconfirm} from 'antd';
+import { Select,InputNumber,DatePicker,Input,Button,Table,Popconfirm,Modal} from 'antd';
 import './css/user.css'
 import {
   HashRouter as Router,
@@ -104,8 +104,8 @@ export default class User extends React.Component{
             <a href="javascript:;" className='operation'>更多</a>
             <ul className="more_operation">
               <li onClick={()=>{window.open('#/usermanage/user/detail')}}>查看详情</li>
-              <li>查看订单</li>
-              <li>拉黑</li>
+              <li onClick={()=>{window.open('#/orders')}}>查看订单</li>
+              <li onClick={this.showModal}>拉黑</li>
               <li>余额管理</li>
               <li>出行券管理</li>
               <li>信用积分管理</li>
@@ -117,9 +117,26 @@ export default class User extends React.Component{
         );
       },
     }];
-    this.state = { data };
+    this.state = { data ,visible: false};
     this.cacheData = data.map(item => ({ ...item }));
 
+  }
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  }
+  handleOk = (e) => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  }
+  handleCancel = (e) => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
   }
   //鼠标移入更多
   more(e){
@@ -237,6 +254,19 @@ export default class User extends React.Component{
         </div>
         <div className="content_bottom">
           <Table bordered dataSource={this.state.data} columns={this.columns} />
+        </div>
+        <div>
+          <Modal
+            title="拉黑"
+            visible={this.state.visible}
+            onOk={this.handleOk}
+            onCancel={this.handleCancel}
+          >
+            <p>确定是否把用户"12323"拉黑？</p>
+            <p>拉黑后，用户无法再租用小蜜蜂。</p>
+            <h3>备注：</h3>
+            
+          </Modal>
         </div>
       </div>
      )
