@@ -26,7 +26,7 @@ body{
   
 }
 .ant-layout-sider{
-  height:1105px !important;
+  height:855px !important;
   overflow-y: scroll;
 }
 .ant-layout.ant-layout-has-sider{

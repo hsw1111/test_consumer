@@ -5,13 +5,17 @@ import './index.css'
 import {
   HashRouter as Router,
   Route,
-  Link
+  Link,
+  Switch
 } from 'react-router-dom'
 
 import User from '../Usermanage/User'
+import TripTicket from '../Usermanage/TripTicket'
 import Message from '../Usermanage/Message'
 import Authcode from '../Usermanage/Authcode'
 import Userinfo from '../Usermanage/Userinfo'
+import Detail from '../Usermanage/Detail/index'
+
 const { SubMenu } = Menu
 const { Header, Content,Sider } = Layout
 const Option = Select.Option;
@@ -146,6 +150,7 @@ handleSubmit = (e) => {
           >
             <SubMenu key="usermanage" title={<span><Icon type="user" /><Link to="/usermanage">用户管理</Link></span>}>
               <Menu.Item key="user"><Link to="/usermanage/user">用户管理</Link></Menu.Item>
+              <Menu.Item key="tripticket"><Link to="/usermanage/tripticket">群发出行券</Link></Menu.Item>
               <Menu.Item key="message"><Link to="/usermanage/message">短信管理</Link></Menu.Item>
               <Menu.Item key="authcode"><Link to="/usermanage/authcode">验证码信息</Link></Menu.Item>
               <Menu.Item key="userInfo"><Link to="/usermanage/userInfo">用户信息</Link></Menu.Item>
@@ -171,10 +176,14 @@ handleSubmit = (e) => {
           </Menu>
         </Sider>
         <Content style={{ padding: '0 24px', minHeight: 280 }}>
-          <Route path="/usermanage/user" component={User}></Route>
-          <Route path="/usermanage/message" component={Message}></Route>
-          <Route path="/usermanage/authcode" component={Authcode}></Route>
-          <Route path="/usermanage/userInfo" component={Userinfo}></Route>
+          <Switch>
+            <Route path='/usermanage/user' component={ User }></Route>
+            <Route path='/usermanage/tripticket' component={ TripTicket }></Route>
+            <Route path='/usermanage/message' component={ Message }></Route>
+            <Route path='/usermanage/authcode' component={ Authcode }></Route>
+            <Route path='/usermanage/userinfo' component={ Userinfo }></Route>
+          </Switch>
+          
         </Content>
       </Layout>
     </Content>

@@ -10,9 +10,10 @@ import {
 } from 'react-router-dom'
 import Home from '../../components/Home/index'
 import Login from '../../components/Login/index'
-import UserManage from '../../components/Usermanage/User.js'
+import User from '../../components/Usermanage/User.js'
 import Detail from '../../components/Usermanage/Detail/index'
 import Orders from '../../components/Usermanage/Orders/index'
+import TripTicket from '../../components/Usermanage/TripTicket.js'
 // 2.引入根组件
 // import App from '../../components/App'
 
@@ -24,9 +25,11 @@ ReactDOM.render(<Router>
   {/*登录页*/}
   <Route path="/login" component={Login}/>
   {/*用户管理*/}
-  <Route path="/usermanage/user/detail"  component={Detail}/>
-  <Route path="/orders"  component={Orders}/>
-  <Route path="/usermanage/user" component={Home} />
+  <Route path="/usermanage"  component={Home} >
+    <Route path="user" component={User}>
+      <Route path="detail" component={Detail}/>
+    </Route>
+  </Route>
   
 
   

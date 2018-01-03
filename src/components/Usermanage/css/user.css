@@ -30,7 +30,7 @@ div.search_wrap .item.search_type {
 .content_bottom {
   margin-top:30px;
   background:#fff;
-  padding:10px;
+  padding: 10px 10px 220px 10px;
 }
 .more_wrap {
   position:relative;
@@ -60,4 +60,45 @@ div.search_wrap .item.search_type {
 }
 .more_operation:hover{
   display:block;
+} 
+ span.icon{
+  color:red;
+  font-size:14px;
+} 
+h3.tips {
+  font-size:16px;
+  font-weight:700;
+} 
+p{
+  color:#000;
+}
+p.cant {
+  color:#999;
+}
+.input_wrap .ant-input {
+  width:300px;
+}
+.input_wrap textarea.ant-input {
+  width:500px;
+}
+button.ok,button.cancle {
+  float:right;
+  margin-top:-30px;
+}
+button.ok{
+  margin-left:20px;
+}
+div.yue {
+  padding-bottom: 15px;
+  border-bottom: 2px solid #555;
+}
+.ant-table-thead > tr > th, .ant-table-tbody > tr > td {
+  padding: 5px;
+}
+h3.record {
+  margin-top: 20px;
+  font-weight: 700;
+}
+.ant-table,.ant-table-content,.ant-table-body,.ant-table table {
+  overflow:visible;
 }

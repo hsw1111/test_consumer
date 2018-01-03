@@ -1,5 +1,5 @@
 import React from 'react'
-import { Select,InputNumber,DatePicker,Input,Button,Table,Popconfirm,Modal} from 'antd';
+import { Select,InputNumber,DatePicker,Input,Button,Table,Popconfirm,Modal} from 'antd'
 import './css/user.css'
 import {
   HashRouter as Router,
@@ -7,9 +7,13 @@ import {
   Link
 } from 'react-router-dom'
 import $ from 'jquery'
-const Option = Select.Option;
-const InputGroup = Input.Group;
-const data = [];
+const Option = Select.Option
+const InputGroup = Input.Group
+const { TextArea } = Input
+//用户数据
+const data = []
+//余额管理数据
+const data1 = []
 for (let i = 0; i < 100; i++) {
   data.push({
     key: i.toString(),
@@ -22,9 +26,13 @@ for (let i = 0; i < 100; i++) {
     yajin:'已交押金',
     score:i,
     account:100+i,
-    time:2017/11/20
+    time:'2017/11/20'
 
-  });
+  })
+  data1.push({
+    key:i,
+    person:'zs'+i
+  })
 }
 
 const EditableCell = ({ editable, value, onChange }) => (
@@ -45,82 +53,116 @@ export default class User extends React.Component{
     super(props)
     const _this = this
     console.log(_this)
+    // 用户数据表
     this.columns = [{
-      title: '用户编号',
+        title: '用户编号',
+        dataIndex: 'num',
+        width: '10%',
+        render: (text, record) => {
+          return (
+            <Link to="/usermanage/user/detail"  target="_blank">12345</Link>
+          );
+        },
+      }, {
+        title: '用户姓名',
+        dataIndex: 'name',
+        width: '10%',
+        render: (text, record) => this.renderColumns(text, record, 'name'),
+      }, {
+        title: '手机号',
+        dataIndex: 'phone',
+        width: '12%',
+        render: (text, record) => this.renderColumns(text, record, 'phone'),
+      },  {
+        title: '登陆城市',
+        dataIndex: 'city',
+        width: '10%',
+        render: (text, record) => this.renderColumns(text, record, 'city'),
+      }, {
+        title: '用户状态',
+        dataIndex: 'status',
+        width: '10%',
+        render: (text, record) => this.renderColumns(text, record, 'status'),
+      }, {
+        title: '注册时间',
+        dataIndex: 'time',
+        width: '10%',
+        render: (text, record) => this.renderColumns(text, record, 'time'),
+      }, {
+        title: '账户余额',
+        dataIndex: 'account',
+        width: '10%',
+        render: (text, record) => this.renderColumns(text, record, 'account'),
+      }, {
+        title: '信用积分',
+        dataIndex: 'score',
+        width: '10%',
+        render: (text, record) => this.renderColumns(text, record, 'score'),
+      }, {
+        title: '押金状态',
+        dataIndex: 'yajin',
+        width: '10%',
+        render: (text, record) => this.renderColumns(text, record, 'yajin'),
+      },{
+        title: '操作',
+        width: '6%',
+        dataIndex: 'operation',
+        render: (text, record) => {
+          return (
+            <div className="more_wrap">
+              <a href="javascript:;" className='operation'>更多</a>
+              <ul className="more_operation">
+                <li onClick={()=>{window.open('#/usermanage/user/detail')}}>查看详情</li>
+                <li onClick={()=>{window.open('#/usermanage/user/orders')}}>查看订单</li>
+                <li onClick={this.showModal}>拉黑</li>
+                <li onClick={this.showModal1}>余额管理</li>
+                <li>出行券管理</li>
+                <li>信用积分管理</li>
+                <li>冻结用户押金</li>
+                <li>修改手机号</li>
+                <li>清除验证码限制</li>
+              </ul>
+            </div>
+          );
+        },
+    }];
+    // 余额管理数据表
+    this.columns1 = [{
+      title: '编号',
       dataIndex: 'num',
       width: '10%',
-      render: (text, record) => {
-        return (
-          <Link to="/usermanage/user/detail"  target="_blank">12345</Link>
-        );
-      },
-    }, {
-      title: '用户姓名',
-      dataIndex: 'name',
-      width: '10%',
-      render: (text, record) => this.renderColumns(text, record, 'age'),
-    }, {
-      title: '手机号',
-      dataIndex: 'phone',
-      width: '12%',
-      render: (text, record) => this.renderColumns(text, record, 'address'),
-    },  {
-      title: '登陆城市',
-      dataIndex: 'city',
-      width: '10%',
-      render: (text, record) => this.renderColumns(text, record, 'address'),
-    }, {
-      title: '用户状态',
-      dataIndex: 'status',
-      width: '10%',
-      render: (text, record) => this.renderColumns(text, record, 'address'),
-    }, {
-      title: '注册时间',
-      dataIndex: 'time',
-      width: '10%',
-      render: (text, record) => this.renderColumns(text, record, 'address'),
-    }, {
-      title: '账户余额',
-      dataIndex: 'account',
-      width: '10%',
-      render: (text, record) => this.renderColumns(text, record, 'address'),
-    }, {
-      title: '信用积分',
-      dataIndex: 'score',
-      width: '10%',
-      render: (text, record) => this.renderColumns(text, record, 'address'),
-    }, {
-      title: '押金状态',
-      dataIndex: 'yajin',
-      width: '10%',
-      render: (text, record) => this.renderColumns(text, record, 'address'),
-    },{
-      title: '操作',
-      width: '6%',
-      dataIndex: 'operation',
-      render: (text, record) => {
-        return (
-          <div className="more_wrap">
-            <a href="javascript:;" className='operation'>更多</a>
-            <ul className="more_operation">
-              <li onClick={()=>{window.open('#/usermanage/user/detail')}}>查看详情</li>
-              <li onClick={()=>{window.open('#/orders')}}>查看订单</li>
-              <li onClick={this.showModal}>拉黑</li>
-              <li>余额管理</li>
-              <li>出行券管理</li>
-              <li>信用积分管理</li>
-              <li>冻结用户押金</li>
-              <li>修改手机号</li>
-              <li>清除验证码限制</li>
-            </ul>
-          </div>
-        );
-      },
+      render: (text, record) => this.renderColumns(text, record, 'num'),
+      }, {
+        title: '时间',
+        dataIndex: 'time',
+        width: '20%',
+        render: (text, record) => this.renderColumns(text, record, 'time'),
+      }, {
+        title: '操作人',
+        dataIndex: 'person',
+        width: '15%',
+        render: (text, record) => this.renderColumns(text, record, 'person'),
+      },  {
+        title: '增加/减少金额',
+        dataIndex: 'city',
+        width: '20%',
+        render: (text, record) => this.renderColumns(text, record, 'city'),
+      }, {
+        title: '当前总余额',
+        dataIndex: 'allMoney',
+        width: '15%',
+        render: (text, record) => this.renderColumns(text, record, 'allMoney'),
+      }, {
+        title: '备注',
+        dataIndex: 'tips',
+        width: '10%',
+        render: (text, record) => this.renderColumns(text, record, 'tips'),
     }];
-    this.state = { data ,visible: false};
+    this.state = { data ,visible: false,visible1: false,data1};
     this.cacheData = data.map(item => ({ ...item }));
 
   }
+  // 拉黑的弹窗
   showModal = () => {
     this.setState({
       visible: true,
@@ -136,6 +178,24 @@ export default class User extends React.Component{
     console.log(e);
     this.setState({
       visible: false,
+    });
+  }
+  //余额管理的弹窗
+  showModal1 = () => {
+    this.setState({
+      visible1: true,
+    });
+  }
+  handleOk1 = (e) => {
+    console.log(e);
+    this.setState({
+      visible1: false,
+    });
+  }
+  handleCancel1 = (e) => {
+    console.log(e);
+    this.setState({
+      visible1: false,
     });
   }
   //鼠标移入更多
@@ -253,19 +313,47 @@ export default class User extends React.Component{
 
         </div>
         <div className="content_bottom">
-          <Table bordered dataSource={this.state.data} columns={this.columns} />
+          <Table 
+            bordered dataSource={this.state.data} 
+            columns={this.columns} 
+            pagination={{hideOnSinglePage:true,showQuickJumper:true,showTotal:function(total,range){return `显示${range[0]}到${range[1]}条,共 ${total} 条`}}}
+             />
         </div>
-        <div>
+        {/* 拉黑模态框 */}
+        <div className="lahei">
           <Modal
             title="拉黑"
             visible={this.state.visible}
             onOk={this.handleOk}
             onCancel={this.handleCancel}
+            cancelText="取消"
+            okText="确定"
           >
             <p>确定是否把用户"12323"拉黑？</p>
-            <p>拉黑后，用户无法再租用小蜜蜂。</p>
-            <h3>备注：</h3>
-            
+            <p className='cant'>拉黑后，用户无法再租用小蜜蜂。</p>
+            <h3 className='tips'><span className='icon'>*</span>备注：</h3>
+            <TextArea rows={4} />
+          </Modal>
+        </div>
+        {/* 余额管理模态框 */}
+        <div>
+          <Modal
+            title="余额管理"
+            visible={this.state.visible1}
+            onOk={this.handleOk1}
+            onCancel={this.handleCancel1}
+            width='900px'
+            footer={null}
+          >
+            <div className="yue">
+              <p><span style={{marginRight: '40px'}}>用户编号：29999</span> <span>手机号：13333333333</span></p>
+              <p>用户当前余额：<span style={{color:'orange'}}>999.0</span>元（充值金额900.0元+赠送金额99.0元）</p>
+              <p className="input_wrap"><span className='icon'>*</span><span>金额：</span><Input placeholder="正数为增加，负数为减少" /></p>
+              <p className="input_wrap"><span style={{float:'left'}}>备注：</span><TextArea rows={3}/></p>
+              <Button type="primary" className='ok'>确定</Button><Button className='cancle'>取消</Button>
+            </div>
+            <h3 className="record">赠送余额充值记录</h3>
+            <Table bordered dataSource={this.state.data1} columns={this.columns1} />
           </Modal>
         </div>
       </div>
